@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout :: link-css"></th:block>
+  <title>Them Phong Ban</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1>Them Phong Ban</h1>
+  <form th:action="@{/phongban/add}" th:object="${category}" method="post">
+    <div class="col-6 mb-3">
+      <label class="form-label" for="name">Ten Phong:</label>
+      <input class="form-control" type="text" th:field="*{tenphong}" id="name">
+      
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/phongban}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+
+</body>
+</html>

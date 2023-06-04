@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:replace="layout :: link-css"></th:block>
+  <title>EDIT NHANVIEN</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1>EDIT NHANVIEN</h1>
+  <form th:action="@{/nhanvien/edit}" th:object="${nhanvien}" method="post">
+    <input type="hidden" th:field="*{maNV}">
+    <div class="col-6 mb-3">
+      <label class="form-label" for="title">Ten NV:</label>
+      <input class="form-control" type="text" th:field="*{tenNV}" id="title">
+      
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="author">Gioi Tinh:</label>
+      <input class="form-control" type="text" th:field="*{phai}" id="author">
+      
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="price">Noi Sinh:</label>
+      <input class="form-control" type="text" th:field="*{noiSinh}" id="price">
+      
+    </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="category">Phong Ban:</label>
+      <select class="form-control" name="category.maphong" id="category">
+        <option value="">-- Chọn danh mục --</option>
+        <option th:each="category : ${categories}" th:value="${category.maphong}" th:text="${category.tenphong}" th:selected="${category.maphong == nhanvien.phongBan.maphong}"></option>
+      </select>
+       </div>
+    <div class="col-6 mb-3">
+      <label class="form-label" for="price">Luong:</label>
+      <input class="form-control" type="text" th:field="*{luong}" id="price">
+      
+    </div>
+    </div>
+    <input type="submit" value="Save">
+  </form>
+  <br>
+  <a th:href="@{/nhanvien}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

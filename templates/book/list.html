@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>My Book List</title>
+  <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1 th:text=${title}></h1>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Ten NV</th>
+      <th>Phai</th>
+      <th>Noi Sinh</th>
+      <th>Phong Ban</th>
+      <th>Luong</th>
+      <th>Action</th>
+      
+    </tr>
+    <tr th:each="book : ${nhanviens}">
+      <td th:text="${book.maNV}"></td>
+      <td th:text="${book.tenNV}"></td>
+      <td>
+        <img th:if="${book.phai == 'Nam'}" th:src="@{/images/nam.png}" style="width: 100px; height: 100px"/>
+        <img th:if="${book.phai == 'Nữ'}" th:src="@{/images/nu.png}" style="width: 100px; height: 100px"/>
+      </td>
+      <td th:text="${book.noiSinh}"></td>
+             <td th:text="${book.phongBan.tenphong}"></td>
+      <td th:text="${book.luong}"></td>
+      <td>
+        <a class="btn btn-primary"  th:href="@{/nhanvien/edit/{id}(id=${book.maNV})}">Edit</a>
+      <form th:action="@{/nhanvien/delete/{id}(id=${book.maNV})}" method="post" >
+          <button class="btn btn-danger" type="submit">Delete</button>  
+        </form>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
